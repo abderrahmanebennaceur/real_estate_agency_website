@@ -1,0 +1,31 @@
+<?php
+
+return [
+    'meta' => [
+        'title' => 'Dar — Des lieux de vie choisis avec soin',
+        'description' => 'Une expérience immobilière attentive, ancrée en Algérie.',
+    ],
+    'navigation' => [
+        'skip_to_content' => 'Aller au contenu',
+        'home' => 'Accueil',
+        'primary' => 'Navigation principale',
+        'mobile' => 'Navigation mobile',
+        'properties' => 'Biens',
+        'about' => 'Notre approche',
+        'contact' => 'Parlons de votre projet',
+        'toggle' => 'Afficher ou masquer la navigation',
+    ],
+    'home' => [
+        'eyebrow' => 'Un projet pensé autrement',
+        'title' => 'Un lieu de vie qui vous ressemble.',
+        'introduction' => 'Découvrez des biens singuliers et un accompagnement attentif, avec un regard local à chaque étape.',
+        'primary_action' => 'Découvrir notre approche',
+        'secondary_action' => 'Parler à notre équipe',
+        'note' => 'Une approche personnelle et réfléchie pour trouver votre prochain chez-vous.',
+        'image_alt' => 'Maison contemporaine baignée de lumière, ouverte sur un jardin verdoyant',
+        'image_caption' => 'Un lieu, une atmosphère, dès la première visite.',
+    ],
+    'footer' => [
+        'caption' => 'Un regard attentif sur l’immobilier en Algérie.',
+    ],
+];
