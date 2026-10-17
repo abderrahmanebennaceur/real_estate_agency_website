@@ -11,6 +11,7 @@
 @php
     $id ??= str_replace(['.', '[', ']'], '-', $name);
     $error ??= $errors->first($name);
+    $inputDirection = in_array($type, ['email', 'tel', 'url', 'number'], true) ? 'ltr' : 'auto';
     $hintId = $hint ? "{$id}-hint" : null;
     $errorId = $error ? "{$id}-error" : null;
 @endphp
@@ -27,6 +28,7 @@
         id="{{ $id }}"
         name="{{ $name }}"
         type="{{ $type }}"
+        dir="{{ $inputDirection }}"
         @required($required)
         @if ($hintId || $errorId)
             aria-describedby="{{ collect([$hintId, $errorId])->filter()->join(' ') }}"

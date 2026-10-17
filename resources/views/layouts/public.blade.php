@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ config('localization.locales.'.app()->getLocale().'.direction') }}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,7 +22,7 @@
         <header class="relative z-20 border-b border-border bg-background" x-data="{ menuOpen: false }">
             <x-ui.container>
                 <div class="flex min-h-20 items-center justify-between gap-6">
-                    <a class="shrink-0 text-xl font-semibold tracking-tight text-primary sm:text-2xl" href="/">
+                    <a class="shrink-0 text-xl font-semibold tracking-tight text-primary sm:text-2xl" href="{{ route('home', ['locale' => app()->getLocale()]) }}">
                         Dar<span class="text-accent">.</span>
                         <span class="sr-only">{{ __('ui.navigation.home') }}</span>
                     </a>
@@ -30,6 +30,19 @@
                     <nav class="hidden items-center gap-8 md:flex" aria-label="{{ __('ui.navigation.primary') }}">
                         <x-ui.nav-link href="#selection">{{ __('ui.navigation.properties') }}</x-ui.nav-link>
                         <x-ui.nav-link href="#approach">{{ __('ui.navigation.about') }}</x-ui.nav-link>
+                        @foreach (config('localization.locales') as $locale => $language)
+                            <a
+                                class="text-sm font-medium transition-colors hover:text-primary focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                                href="{{ route(request()->route()->getName(), array_merge(request()->route()->parameters(), ['locale' => $locale])) }}"
+                                lang="{{ $locale }}"
+                                hreflang="{{ $locale }}"
+                                @if (app()->isLocale($locale))
+                                    aria-current="page"
+                                @endif
+                            >
+                                {{ $language['name'] }}
+                            </a>
+                        @endforeach
                     </nav>
 
                     <div class="hidden md:block">
@@ -72,6 +85,21 @@
                         <x-ui.nav-link href="#contact" x-on:click="menuOpen = false">
                             {{ __('ui.navigation.contact') }}
                         </x-ui.nav-link>
+                        <div class="flex flex-wrap items-center gap-4 border-t border-border pt-4">
+                            @foreach (config('localization.locales') as $locale => $language)
+                                <a
+                                    class="text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+                                    href="{{ route(request()->route()->getName(), array_merge(request()->route()->parameters(), ['locale' => $locale])) }}"
+                                    lang="{{ $locale }}"
+                                    hreflang="{{ $locale }}"
+                                    @if (app()->isLocale($locale))
+                                        aria-current="page"
+                                    @endif
+                                >
+                                    {{ $language['name'] }}
+                                </a>
+                            @endforeach
+                        </div>
                     </div>
                 </nav>
             </x-ui.container>
